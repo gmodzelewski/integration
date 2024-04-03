@@ -1,6 +1,6 @@
 schemaVersion: 2.2.0
 metadata:
-  name: dayinthelife-workspace
+  name: camel-workspace
 attributes:
   controller.devfile.io/storage-type: per-user
 projects:
@@ -77,6 +77,12 @@ components:
           value: '-XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/user'
         - name: MAVEN_OPTS
           value: $(JAVA_OPTS)
+        - name: CHE_DASHBOARD_URL
+          value: https://devspaces.apps.ocp.ocp-gm.de
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: https://devspaces.apps.ocp.ocp-gm.de/plugin-registry/v3
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: http://plugin-registry.che.svc:8080/v3
         - name: OPENVSX_REGISTRY_URL
           value: https://open-vsx.org
       image: quay.io/redhatintegration/rhi-tools:devspaces
