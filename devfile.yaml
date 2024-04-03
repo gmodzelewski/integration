@@ -83,8 +83,6 @@ components:
           value: https://devspaces.apps.ocp.ocp-gm.de/plugin-registry/v3
         - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
           value: http://plugin-registry.che.svc:8080/v3
-        - name: OPENVSX_REGISTRY_URL
-          value: https://open-vsx.org
       image: quay.io/redhatintegration/rhi-tools:devspaces
       memoryLimit: 4.07G
       memoryRequest: 512Mi
