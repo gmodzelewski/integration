@@ -78,12 +78,6 @@ components:
           value: '-XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/user'
         - name: MAVEN_OPTS
           value: $(JAVA_OPTS)
-        - name: CHE_DASHBOARD_URL
-          value: https://devspaces.apps.cluster-xsxl4.xsxl4.sandbox982.opentlc.com
-        - name: CHE_PLUGIN_REGISTRY_URL
-          value: https://devspaces.apps.cluster-xsxl4.xsxl4.sandbox982.opentlc.com/plugin-registry/v3
-        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
-          value: http://plugin-registry.che.svc:8080/v3
         - name: OPENVSX_REGISTRY_URL
           value: https://open-vsx.org
       image: quay.io/redhatintegration/rhi-tools:devspaces
