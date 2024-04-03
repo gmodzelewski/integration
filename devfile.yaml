@@ -1,0 +1,108 @@
+schemaVersion: 2.2.0
+metadata:
+  name: dayinthelife-workspace
+  namespace: user1-devspaces
+attributes:
+  controller.devfile.io/storage-type: per-user
+projects:
+  - git:
+      checkoutFrom:
+        revision: main
+      remotes:
+        origin: https://github.com/RedHat-Middleware-Workshops/workshop-camel3
+    name: message-hub
+components:
+  - attributes:
+      che-code.eclipse.org/contribute-cpuLimit: true
+      che-code.eclipse.org/contribute-cpuRequest: true
+      che-code.eclipse.org/contribute-endpoint/che-code: 3100
+      che-code.eclipse.org/contribute-endpoint/code-redirect-1: 13131
+      che-code.eclipse.org/contribute-endpoint/code-redirect-2: 13132
+      che-code.eclipse.org/contribute-endpoint/code-redirect-3: 13133
+      che-code.eclipse.org/contribute-entry-point: true
+      che-code.eclipse.org/contribute-memoryLimit: true
+      che-code.eclipse.org/contribute-memoryRequest: true
+      che-code.eclipse.org/contribute-volume-mount/checode: /checode
+      che-code.eclipse.org/contributed-container: universal-developer-image
+      che-code.eclipse.org/original-cpuLimit: 500m
+      che-code.eclipse.org/original-cpuRequest: 30m
+      che-code.eclipse.org/original-memoryLimit: 3G
+      che-code.eclipse.org/original-memoryRequest: 256Mi
+      controller.devfile.io/merge-contribution: true
+    container:
+      command:
+        - /checode/entrypoint-volume.sh
+      cpuLimit: 1000m
+      cpuRequest: 60m
+      endpoints:
+        - attributes:
+            contributed-by: che-code.eclipse.org
+            cookiesAuthEnabled: true
+            discoverable: false
+            type: main
+            urlRewriteSupported: true
+          exposure: public
+          name: che-code
+          path: '?tkn=eclipse-che'
+          protocol: https
+          secure: false
+          targetPort: 3100
+        - attributes:
+            contributed-by: che-code.eclipse.org
+            discoverable: false
+            urlRewriteSupported: true
+          exposure: public
+          name: code-redirect-1
+          protocol: http
+          targetPort: 13131
+        - attributes:
+            contributed-by: che-code.eclipse.org
+            discoverable: false
+            urlRewriteSupported: true
+          exposure: public
+          name: code-redirect-2
+          protocol: http
+          targetPort: 13132
+        - attributes:
+            contributed-by: che-code.eclipse.org
+            discoverable: false
+            urlRewriteSupported: true
+          exposure: public
+          name: code-redirect-3
+          protocol: http
+          targetPort: 13133
+      env:
+        - name: MAVEN_CONFIG
+          value: ''
+        - name: JAVA_OPTS
+          value: '-XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/user'
+        - name: MAVEN_OPTS
+          value: $(JAVA_OPTS)
+        - name: CHE_DASHBOARD_URL
+          value: https://devspaces.apps.cluster-xsxl4.xsxl4.sandbox982.opentlc.com
+        - name: CHE_PLUGIN_REGISTRY_URL
+          value: https://devspaces.apps.cluster-xsxl4.xsxl4.sandbox982.opentlc.com/plugin-registry/v3
+        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
+          value: http://plugin-registry.che.svc:8080/v3
+        - name: OPENVSX_REGISTRY_URL
+          value: https://open-vsx.org
+      image: quay.io/redhatintegration/rhi-tools:devspaces
+      memoryLimit: 4.07G
+      memoryRequest: 512Mi
+      sourceMapping: /projects
+      volumeMounts:
+        - name: m2
+          path: /home/user/.m2
+        - name: checode
+          path: /checode
+    name: universal-developer-image
+  - name: m2
+    volume: {}
+commands:
+  - exec:
+      commandLine: jbang app setup && jbang trust add https://github.com/apache/camel && jbang app install camel@apache/camel
+      component: universal-developer-image
+    id: init-jbang
+events:
+  postStart:
+    - init-jbang
