@@ -1,12 +1,10 @@
 {
   "recommendations": [
     // "jeppeandersen.vscode-kafka",
-    "redhat.java",
     "redhat.apache-camel-extension-pack",
     "redhat.vscode-apache-camel",
     "redhat.vscode-camelk",
     "redhat.vscode-xml",
     "redhat.vscode-yaml",
-    "redhat.vscode-microprofile",
   ]
 }
