@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "jeppeandersen.vscode-kafka",
+    "ms-kubernetes-tools.vscode-kubernetes-tools",
+    "redhat.java",
+    "redhat.apache-camel-extension-pack",
+    "redhat.vscode-apache-camel",
+    "redhat.vscode-camelk",
+    "redhat.fabric8-analytics",
+    "redhat.vscode-openshift-connector",
+    "redhat.vscode-quarkus",
+    "redhat.vscode-redhat-account",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "redhat.vscode-microprofile",
+  ]
+}
