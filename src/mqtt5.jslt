@@ -1,0 +1,5 @@
+{
+    "channel":"room1",
+    "timestamp": string(round(parse-time(.sent, "yyyy-MM-dd'T'HH:mm:ss.SSSX"))),
+    "text":"*"+.fromUser.username+"@matrix*: "+.text
+}

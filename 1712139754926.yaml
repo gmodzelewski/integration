@@ -1,0 +1,13 @@
+- route:
+    id: route-1844
+    from:
+      id: from-1754
+      uri: dhis2:POST/machwas
+      parameters:
+        password: dinge
+        personalAccessToken: trallala
+        username: ich
+      steps:
+        - log:
+            id: log-2396
+            message: template message

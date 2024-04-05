@@ -8,6 +8,12 @@ projects:
       checkoutFrom:
         revision: main
       remotes:
+        origin: https://github.com/gmodzelewski/integration
+    name: integration
+  - git:
+      checkoutFrom:
+        revision: main
+      remotes:
         origin: https://github.com/RedHat-Middleware-Workshops/workshop-camel3
     name: message-hub
 components:
