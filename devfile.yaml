@@ -19,6 +19,7 @@ projects:
 components:
   - attributes:
       che-code.eclipse.org/contribute-cpuLimit: true
+      che-code.eclipse.org/contribute-cpuRequest: true
       che-code.eclipse.org/contribute-endpoint/che-code: 3100
       che-code.eclipse.org/contribute-endpoint/code-redirect-1: 13131
       che-code.eclipse.org/contribute-endpoint/code-redirect-2: 13132
@@ -29,6 +30,7 @@ components:
       che-code.eclipse.org/contribute-volume-mount/checode: /checode
       che-code.eclipse.org/contributed-container: universal-developer-image
       che-code.eclipse.org/original-cpuLimit: 500m
+      che-code.eclipse.org/original-cpuRequest: 60m
       che-code.eclipse.org/original-memoryLimit: 4G
       che-code.eclipse.org/original-memoryRequest: 256Mi
       controller.devfile.io/merge-contribution: true
@@ -36,6 +38,7 @@ components:
       command:
         - /checode/entrypoint-volume.sh
       cpuLimit: 1000m
+      cpuRequest: 60m
       endpoints:
         - attributes:
             contributed-by: che-code.eclipse.org
