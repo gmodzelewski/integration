@@ -1,0 +1,11 @@
+- route:
+    id: route-3182
+    from:
+      id: fetchFromBroker
+      uri: paho-mqtt5:mytopic
+      parameters:
+        brokerUrl: tcp://broker-amq-mqtt-mqtt-0-svc:1883
+      steps:
+        - to:
+            id: to-1261
+            uri: kamelet:log-sink

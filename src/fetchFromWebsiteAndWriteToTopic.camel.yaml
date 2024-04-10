@@ -1,16 +1,16 @@
 - route:
-    id: route-3129
+    id: route
     from:
-      id: from-3020
-      uri: timer:template
+      id: beer-every-second
+      uri: kamelet:beer-source
       parameters:
-        period: "1000"
+        period: "5000"
       steps:
         - log:
-            id: log-7043
+            id: log
             message: template message
         - to:
-            id: to-2360
+            id: store-in-broker
             uri: paho-mqtt5:mytopic
             parameters:
               brokerUrl: tcp://broker-amq-mqtt-mqtt-0-svc:1883
