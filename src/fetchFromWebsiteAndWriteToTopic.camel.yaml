@@ -1,14 +1,11 @@
 - route:
-    id: route
+    id: fetch-from-website-and-write-to-topic
     from:
       id: beer-every-second
       uri: kamelet:beer-source
       parameters:
         period: "5000"
       steps:
-        - log:
-            id: log
-            message: template message
         - to:
             id: store-in-broker
             uri: paho-mqtt5:mytopic
