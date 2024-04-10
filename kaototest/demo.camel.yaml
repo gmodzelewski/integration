@@ -1,0 +1,16 @@
+- route:
+    id: route-3129
+    from:
+      id: from-3020
+      uri: timer:template
+      parameters:
+        period: "1000"
+      steps:
+        - log:
+            id: log-7043
+            message: template message
+        - to:
+            id: to-2360
+            uri: paho-mqtt5:mytopic
+            parameters:
+              brokerUrl: tcp://broker-amq-mqtt-mqtt-0-svc:1883
