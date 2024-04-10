@@ -1,0 +1,37 @@
+apiVersion: camel.apache.org/v1
+kind: KameletBinding
+metadata:
+  name: mqtt5-source-pipe
+  annotations:
+    trait.camel.apache.org/mount.configs: "secret:mqtt5"
+    trait.camel.apache.org/mount.resources: "configmap:mqtt5-transform"
+spec:
+
+  source:
+    ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1
+      name: mqtt5-source
+    properties:
+      brokerUrl: "{{broker.url}}"
+      topic: "{{broker.topic}}"
+
+  steps:
+  - ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1
+      name: log-action
+  
+  # JSON Transformation
+  - ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1
+      name: jslt-action
+    properties:
+      template: "{{transform.path:mqtt5.jslt}}"
+
+  sink:
+    ref:
+      kind: Kamelet
+      apiVersion: camel.apache.org/v1
+      name: log-sink
