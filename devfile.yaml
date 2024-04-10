@@ -28,14 +28,14 @@ components:
       che-code.eclipse.org/contribute-memoryRequest: true
       che-code.eclipse.org/contribute-volume-mount/checode: /checode
       che-code.eclipse.org/contributed-container: universal-developer-image
-      che-code.eclipse.org/original-cpuLimit: 1000m
-      che-code.eclipse.org/original-memoryLimit: 6G
-      che-code.eclipse.org/original-memoryRequest: 2G
+      che-code.eclipse.org/original-cpuLimit: 500m
+      che-code.eclipse.org/original-memoryLimit: 4G
+      che-code.eclipse.org/original-memoryRequest: 256Mi
       controller.devfile.io/merge-contribution: true
     container:
       command:
         - /checode/entrypoint-volume.sh
-      cpuLimit: 1500m
+      cpuLimit: 1000m
       endpoints:
         - attributes:
             contributed-by: che-code.eclipse.org
@@ -87,8 +87,8 @@ components:
         - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
           value: http://plugin-registry.che.svc:8080/v3
       image: quay.io/redhatintegration/rhi-tools:devspaces
-      memoryLimit: 6G
-      memoryRequest: 1G
+      memoryLimit: 6.07G
+      memoryRequest: 512Mi
       sourceMapping: /projects
       volumeMounts:
         - name: m2
