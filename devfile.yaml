@@ -1,8 +1,6 @@
-schemaVersion: 2.2.0
+schemaVersion: <version>
 metadata:
-  name: camel-workspace
-attributes:
-  controller.devfile.io/storage-type: per-user
+  name: helloworld-example
 projects:
   - git:
       checkoutFrom:
@@ -17,38 +15,17 @@ projects:
         origin: https://github.com/RedHat-Middleware-Workshops/workshop-camel3
     name: message-hub
 components:
-  - container:
-      cpuLimit: 3000m
-      env:
-        - name: MAVEN_CONFIG
-          value: ''
-        - name: JAVA_OPTS
-          value: '-XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/user'
-        - name: MAVEN_OPTS
-          value: $(JAVA_OPTS)
-        - name: CHE_DASHBOARD_URL
-          value: https://devspaces.apps.ocp.ocp-gm.de
-        - name: CHE_PLUGIN_REGISTRY_URL
-          value: https://devspaces.apps.ocp.ocp-gm.de/plugin-registry/v3
-        - name: CHE_PLUGIN_REGISTRY_INTERNAL_URL
-          value: http://plugin-registry.che.svc:8080/v3
-      image: quay.io/devfile/universal-developer-image:latest
-      memoryLimit: 6.07G
-      memoryRequest: 512Mi
-      sourceMapping: /projects
-      volumeMounts:
-        - name: m2
-          path: /home/user/.m2
-        - name: checode
-          path: /checode
-    name: universal-developer-image
-  - name: m2
-    volume: {}
+  - name: dev-tooling
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      endpoints:
+        - name: http-3000
+          targetPort: 3000
 commands:
-  - exec:
+  - id: init-jbang
+    exec:
       commandLine: jbang app setup && jbang trust add https://github.com/apache/camel && jbang app install camel@apache/camel
-      component: universal-developer-image
-    id: init-jbang
-events:
+      component: dev-tooling
+ vents:
   postStart:
     - init-jbang
