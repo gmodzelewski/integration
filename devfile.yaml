@@ -30,6 +30,6 @@ commands:
       commandLine: jbang app setup && jbang trust add https://github.com/apache/camel && jbang app install camel@apache/camel
       component: dev-tooling
 
-events:
-  postStart:
-    - init-jbang
+# events:
+#   postStart:
+#     - init-jbang
