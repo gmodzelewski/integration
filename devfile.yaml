@@ -1,31 +1,35 @@
 schemaVersion: 2.2.2
 metadata:
-  name: helloworld-example
+  name: camelk-workspace
+
 projects:
-  - git:
+  - name: integration
+    git:
       checkoutFrom:
         revision: main
       remotes:
         origin: https://github.com/gmodzelewski/integration
-    name: integration
-  - git:
+  - name: message-hub
+    git:
       checkoutFrom:
         revision: main
       remotes:
         origin: https://github.com/RedHat-Middleware-Workshops/workshop-camel3
-    name: message-hub
+
 components:
   - name: dev-tooling
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
       endpoints:
-        - name: http-3000
-          targetPort: 3000
+        - name: http-3100
+          targetPort: 3100
+
 commands:
   - id: init-jbang
     exec:
       commandLine: jbang app setup && jbang trust add https://github.com/apache/camel && jbang app install camel@apache/camel
       component: dev-tooling
+
 events:
   postStart:
     - init-jbang
