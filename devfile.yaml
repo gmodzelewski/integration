@@ -23,13 +23,17 @@ components:
       endpoints:
         - name: http-3100
           targetPort: 3100
+      cpuLimit: "4"
+      cpuRequest: "1"
+      memoryLimit: 8G
+      memoryRequest: 4G
+      mountSources: true
 
 commands:
   - id: init-jbang
     exec:
       commandLine: jbang app setup && jbang trust add https://github.com/apache/camel && jbang app install camel@apache/camel
       component: dev-tooling
-
 # events:
 #   postStart:
 #     - init-jbang
