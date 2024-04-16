@@ -19,7 +19,7 @@ projects:
 components:
   - name: dev-tooling
     container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      image: quay.io/modzelewski/camelk-developer-image
       endpoints:
         - name: http-3100
           targetPort: 3100
