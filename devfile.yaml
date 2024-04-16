@@ -28,6 +28,9 @@ components:
       memoryLimit: 8G
       memoryRequest: 4G
       mountSources: true
+      env:
+        - name: SHELL
+          value: /bin/zsh
 
 commands:
   - id: init-jbang
