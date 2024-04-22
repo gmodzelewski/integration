@@ -15,7 +15,19 @@ projects:
         revision: main
       remotes:
         origin: https://github.com/RedHat-Middleware-Workshops/workshop-camel3
-
+  - name: super-duper-octo-infra
+    git:
+      checkoutFrom:
+        revision: main
+      remotes:
+        origin: https://github.com/gmodzelewski/super-duper-octo-infra.git
+  - name: camelk-developer-image
+    git:
+      checkoutFrom:
+        revision: main
+      remotes:
+        origin: https://github.com/gmodzelewski/camelk-developer-image.git
+        
 components:
   - name: dev-tooling
     container:
@@ -24,9 +36,9 @@ components:
         - name: http-3100
           targetPort: 3100
       cpuLimit: "4"
-      cpuRequest: "1"
+      cpuRequest: "0"
       memoryLimit: 8G
-      memoryRequest: 4G
+      memoryRequest: 8G
       mountSources: true
       env:
         - name: SHELL
